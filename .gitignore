@@ -1,0 +1,19 @@
+dist/
+archive/
+src/libs
+src/nimcache
+test.*
+test
+main
+game
+scrapnote.nim
+
+# Editor directories and files
+.idea
+.vscode
+*app
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.so
