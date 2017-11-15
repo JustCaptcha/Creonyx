@@ -1,48 +1,67 @@
 import libBearLibTerminal
 import strutils
-import asyncdispatch
+# import asyncdispatch
+import world/world
 import world/mapgenerator
-import player
+import world/player
+# New files
+import world/state
+import world/input
 
-let windowSettings: string = "window.title='Awsome project'; window.size=160x45; window.icon='./anvil-impact.ico'"
-# type windowSettings2
+let windowSettings: string = "window.title='Creonyx'; window.size=160x45; window.icon='./anvil-impact.ico'"
+    #windowSettings: string = ""
+
+# temp variables (make object later)
 
 # Declarations ##
-# proc render()
+proc gameLoop()
+proc render()
 proc settings()
 proc menu()
-proc userInput()
-proc testthings()
+proc border()
 #################
+proc launch*() =
+  settings()              # set env variables
+  menu()                  # make menu
+  gameLoop()
 
-proc render*() =
-    settings()              # set env variables
-    menu()                  # make menu
-    testthings()            # testing many things!
+proc gameLoop() =
+  while g.exit != true:
+    render() # <- user input
+
+proc render() =
     terminal_refresh()
-    userInput()             # A | need add async function
+    input()
+    worldUpdate()
+    # echo g[]
+    inc(g.time)
 
 #Utils
 proc settings() =
   terminal_set(windowSettings)
+  # terminal_set("0x1000: tileset2.png, size=16x16")
   terminal_composition(TK_ON)
-  terminal_color(color_from_name("gray"))
-
+  terminal_color(color_from_name("white"))
+  # terminal_bkcolor(color_from_name("white"))
 proc menu() =
-  echo "Menu"
+  # Hello screen
+  terminal_print(69, 23, "[color=purple]Insert[/color][color=yellow] coin![/color]")
+  terminal_print(70, 24, "Press enter")
+  var a: int
+  while a != TK_ENTER:
+    terminal_refresh()
+    a = terminal_read()
+  terminal_refresh()
 
-proc userInput() =
-  echo "User input"
-  var key: int = terminal_read()
-  while key != TK_CLOSE and key != TK_ESCAPE:
-    key = terminal_read()
-    if key == TK_A:
-      terminal_refresh()
-
-proc testthings() =
-  echo "Yes, think twice..."
-
-#[
-  let d = terminal_print(1, 2, "[color=purple]Hello new world![/color]")
-  terminal_print(25, 1, "[[width:" & $d.width & ", height:" & $d.height & "]]")
-]#
+proc border() =
+  var w: int = terminal_state(TK_WIDTH)
+  var h: int = terminal_state(TK_HEIGHT)
+  var x: int
+  var y: int
+  var wall: int = 0x2588
+  for x in countup(x, w):
+    terminal_put(x, 0, wall)
+    terminal_put(0, x, wall)
+  for y in countup(y, h):
+    terminal_put(y, w, wall)
+    terminal_put(0, y, wall)
