@@ -2,11 +2,7 @@ dist/
 archive/
 src/libs
 src/nimcache
-test.*
-test
-main
-game
-scrapnote.nim
+temp/
 
 # Editor directories and files
 .idea
@@ -17,3 +13,10 @@ scrapnote.nim
 *.njsproj
 *.sln
 *.so
+*.ini
+*.ttf
+test.*
+test
+game
+main
+scrapnote.nim

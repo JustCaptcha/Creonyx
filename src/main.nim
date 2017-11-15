@@ -12,5 +12,5 @@ start()
 
 proc start() =
     terminal_open()
-    render()
+    launch()
     terminal_close()
