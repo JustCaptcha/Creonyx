@@ -1,9 +1,9 @@
 import ../libBearLibTerminal
 import state
-import player
-import actions
+import objects/Player
+import ../logic/actions
 
-proc input*() =
+proc input*(): int =
     var key: int
     key = terminal_read()
     case key:

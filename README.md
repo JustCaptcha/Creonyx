@@ -15,3 +15,15 @@ Simple Rougue RPG written in Nim with BearLibTerminal
 ## Dependencies
 * blt-nim
 * libBearLibTerminal
+* yaml
+
+## Implemented features:
+* Movement
+* Save and load player, map
+
+## TODO
+* Map generations
+* Creatures
+* AI
+* Inventory system
+* And more...
