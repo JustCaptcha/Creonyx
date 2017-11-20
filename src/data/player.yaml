@@ -1,0 +1,14 @@
+
+{
+  "alive": true,
+  "placed": false,
+  "name": "Shero",
+  "cchar": 64,
+  "cchar_color": "purple",
+  "ctype": "",
+  "p_x": 28,
+  "p_y": 24,
+  "age": 20,
+  "hitpoints": 100,
+  "manapoints": 0
+}

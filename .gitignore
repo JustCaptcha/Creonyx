@@ -3,6 +3,10 @@ archive/
 src/libs
 src/nimcache
 temp/
+tools/
+assets/
+fonts/unused/
+dist/
 
 # Editor directories and files
 .idea
@@ -14,9 +18,7 @@ temp/
 *.sln
 *.so
 *.ini
-*.ttf
 test.*
 test
 game
 main
-scrapnote.nim

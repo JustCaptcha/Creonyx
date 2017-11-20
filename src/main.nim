@@ -1,6 +1,6 @@
 #############################
 #[
-    copyright JustCaptcha
+  copyright JustCaptcha 2017
 ]#
 #############################
 import libBearLibTerminal

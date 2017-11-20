@@ -1,4 +1,4 @@
-import player
+import objects/Player
 
 type
     GameState = ref object of RootObj
@@ -13,7 +13,11 @@ type
 var g*: GameState
 new g
 
+# test
+var gameLoadedMap: string
+
 # Init player
-var hero*: Player
+#[ var hero*: Player
 new hero
-hero.generate()
+hero.generate() ]#
+

@@ -1,67 +1,52 @@
 import libBearLibTerminal
 import strutils
-# import asyncdispatch
 import world/world
-import world/mapgenerator
-import world/player
-# New files
 import world/state
-import world/input
+import helloscreen
+import menu/menu
+import logic/logic
 
-let windowSettings: string = "window.title='Creonyx'; window.size=160x45; window.icon='./anvil-impact.ico'"
-    #windowSettings: string = ""
-
-# temp variables (make object later)
+let windowSettings: string = """
+   window.title = 'Creonyx';
+   window.size = 75x75;
+   window.resizeable = true;
+   window.icon = './assets/wooden-door.ico';
+   font: ./fonts/square.ttf, size=9;
+"""
+# FIXME: dont work app icon
 
 # Declarations ##
 proc gameLoop()
 proc render()
 proc settings()
-proc menu()
-proc border()
 #################
+#[
+  TODO:
+    3. Generators
+      - map
+      - player
+    4. First Creature
+    5. Simple AI
+]#
 proc launch*() =
   settings()              # set env variables
-  menu()                  # make menu
+  helloScreen()
+  # menu() TODO:
   gameLoop()
 
 proc gameLoop() =
+  menu()
+  world() # First initialization: load map from file, load Player position from yaml
   while g.exit != true:
-    render() # <- user input
+    render()
 
 proc render() =
     terminal_refresh()
-    input()
+    menuUpdate()
     worldUpdate()
-    # echo g[]
-    inc(g.time)
+    logic()
 
-#Utils
 proc settings() =
   terminal_set(windowSettings)
-  # terminal_set("0x1000: tileset2.png, size=16x16")
   terminal_composition(TK_ON)
   terminal_color(color_from_name("white"))
-  # terminal_bkcolor(color_from_name("white"))
-proc menu() =
-  # Hello screen
-  terminal_print(69, 23, "[color=purple]Insert[/color][color=yellow] coin![/color]")
-  terminal_print(70, 24, "Press enter")
-  var a: int
-  while a != TK_ENTER:
-    terminal_refresh()
-    a = terminal_read()
-  terminal_refresh()
-
-proc border() =
-  var w: int = terminal_state(TK_WIDTH)
-  var h: int = terminal_state(TK_HEIGHT)
-  var x: int
-  var y: int
-  var wall: int = 0x2588
-  for x in countup(x, w):
-    terminal_put(x, 0, wall)
-    terminal_put(0, x, wall)
-  for y in countup(y, h):
-    terminal_put(y, w, wall)
-    terminal_put(0, y, wall)
