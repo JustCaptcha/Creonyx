@@ -6,7 +6,6 @@ temp/
 tools/
 assets/
 fonts/unused/
-dist/
 
 # Editor directories and files
 .idea
@@ -18,7 +17,6 @@ dist/
 *.sln
 *.so
 *.ini
-test.*
-test
+nimcache.*
 game
 main
