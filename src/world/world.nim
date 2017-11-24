@@ -1,5 +1,5 @@
 import ../libBearLibTerminal
-import map/mapreader.nim
+import map/mapReader.nim
 import ../logic/logic
 import objects/Player
 import state

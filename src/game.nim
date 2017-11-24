@@ -2,7 +2,7 @@ import libBearLibTerminal
 import strutils
 import world/world
 import world/state
-import helloscreen
+import helloScreen
 import menu/menu
 import logic/logic
 
@@ -16,6 +16,7 @@ let windowSettings: string = """
 # FIXME: dont work app icon
 
 # Declarations ##
+proc gameStart()
 proc gameLoop()
 proc render()
 proc settings()
@@ -32,19 +33,22 @@ proc launch*() =
   settings()              # set env variables
   helloScreen()
   # menu() TODO:
-  gameLoop()
+  gameStart()
 
-proc gameLoop() =
+proc gameStart() =
   menu()
   world() # First initialization: load map from file, load Player position from yaml
   while g.exit != true:
-    render()
+    gameLoop()
+
+proc gameLoop() =
+  render()
+  logic()
 
 proc render() =
-    terminal_refresh()
-    menuUpdate()
-    worldUpdate()
-    logic()
+  terminal_refresh()
+  menuUpdate()
+  worldUpdate()
 
 proc settings() =
   terminal_set(windowSettings)

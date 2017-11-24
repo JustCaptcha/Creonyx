@@ -1,7 +1,7 @@
 import libBearLibTerminal
 
 proc helloScreen*() =
-    #add exceptions!
+    #add exceptions! FIXME:
     var logo: string = readFile("./src/data/helloscreen.txt")
     var TK_WIDTH_CENTER: int = terminal_state(TK_WIDTH) div 2
     var TK_HEIGHT_CENTER: int = terminal_state(TK_HEIGHT) div 2

@@ -23,3 +23,8 @@ proc loadff*(file: string, obj: object) =
     let s = newFileStream(file, fmRead)
     load(s, obj[])
     s.close()
+
+proc saveff*(file: string, obj: object) =
+    let s = newFileStream(file, fmWrite)
+    dump(obj[], s)
+    s.close()
